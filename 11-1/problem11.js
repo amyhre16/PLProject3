@@ -1,50 +1,51 @@
 /**
  * Created by pcannata on 2/20/16.
  */
+/* person --> customer, employee
+ *      fname, lname, email, number */
 
-var substance = function(){ // This line to the line with "}();" creates a Closure.
+var person = function(){
     // private data
-    var data = {            // This is an exmaple of a javaScript Object.
-        name:'Substance',
-        $name: function(n){
-            data.memo += 1; // This, and the object entry "memo: 0" below is an example of Memoization where a function can
-                            // keep track of some prior behavior.
-            data.name = n },
-        memo: 0,
-        dob: new Date('January 1, 1980'),
-        $dob: function(n){data.memo += 1; data.dob = n},
-        says:"Hello, I'm a substance",
-        $says: function(n){data.memo += 1; data.says = n},
-        quality: 'Virtue',
-        $quality: function(n){data.memo += 1; data.quality = n}
+    var data = {
+        first_name:'',
+        $first_name: function(fname){
+            data.first_name = fname },
+        last_name: '',
+        $last_name: function(lname) {
+            data.last_name = lname
+        },
+        email: '',
+        $email: function(person_email) {
+            data.email = person_email
+        }
     };
 
     var F = function(){};
-    f = new F();            // This is an example of the conflicted nature of JavaScript.
-                            // In the words of Douglas Crockford, "JavaScript itself is not confident in its prototypal nature,
-                            // so it offers an object-making syntax that is reminiscent of the classical oo languages. Few
-                            // classical progrmmers found prototypal inheritance to be acceptable and classically inspired
-                            // syntax obscures the language's true nature. It is the worst of both worlds.
+    f = new F();
+
+
 
     // public data
-    f.sname = 'Substance'
     f.run = function (e) {
         return data[e];
     };
+    f.toString = function () {
+        return "Name : " + data['first_name'] + " " + data['last_name'] + "<BR>" +
+                "Email : " + data['email'] + "<BR>";
+    }
 
     return f;
-}();                        // This is an example of Function Application.
+}();
 
-var animal = function(p){
+
+
+var employee = function(p){
     // private data
     var data = {
-        name:'Animal',
-        $name: function(n){data.memo += 1; data.name = n},
-        memo: 0,
-        dob: new Date('January 1, 1990'),
-        $dob: function(n){data.memo += 1; data.dob = n},
-        says:"Hello, I'm an animal",
-        $says: function(n){data.memo += 1; data.says = n}
+        ssn: '',
+        $ssn: function(ssnumber) {
+            data.ssn = ssnumber
+        }
     };
 
     var F = function(){};
@@ -52,26 +53,29 @@ var animal = function(p){
     f = new F();
 
     // public data
-    f.aname = 'Animal'
     f.run = function (e) {
         var r = data[e];
         if(r === undefined) return F.prototype.run(e);
         else return r;
     };
 
-    return f;
-}(substance);
+    f.displayText = function () {
+        return F.prototype.toString() + data['ssn'] + "<BR>";
+    }
 
-var cat = function(p){
+    return f;
+}(person);
+
+
+
+
+var customer = function(p){
     // private data
     var data = {
-        name:'Cat',
-        $name: function(n){data.memo += 1; data.name = n},
-        memo: 0,
-        dob: new Date('January 1, 2000'),
-        $dob: function(n){data.memo += 1; data.dob = n},
-        says:"Hello, I'm a cat",
-        $says: function(n){data.memo += 1; data.says = n}
+        customer_number: '',
+        $customer_number: function(cust_numb) {
+            data.customer_number = cust_numb
+        }
     };
 
     var F = function(){};
@@ -79,7 +83,6 @@ var cat = function(p){
     f = new F();
 
     // public data
-    f.cname = 'Cat'
     f.run = function (e) {
         var r = data[e];
         if(r === undefined) return F.prototype.run(e);
@@ -87,7 +90,10 @@ var cat = function(p){
     };
 
     return f;
-}(animal);
+}(person);
+
+
+/*
 
 var human = function(p){
     // private data
@@ -169,4 +175,31 @@ a1.speak = function(a){ document.writeln(a.run('says') + "<BR>"); }
 document.writeln("<BR>");
 a1.speak(a1);
 a1.speak(myCat);
-a1.speak(socrates);
+a1.speak(socrates);*!/
+*/
+
+
+var choice = prompt("Employee or Customer");
+if (choice = 'e') {
+
+}
+
+var emp = Object.create(employee);
+
+
+document.writeln(Object.getPrototypeOf(emp) + "<BR>");
+emp.run('$first_name')('bob');
+emp.run('$last_name')('smith');
+emp.run('$email')('test@yahoo.com');
+emp.run('$ssn')('99999999999999999');
+document.writeln(emp.displayText());
+//document.writeln(emp.run('first_name') + "<BR>");
+
+
+
+var cust = Object.create(customer);
+cust.run('$first_name')('sarah');
+cust.run('$customer_number')('3333');
+
+document.writeln(cust.run('first_name') + "<BR>");
+document.writeln(cust.run('customer_number'));
