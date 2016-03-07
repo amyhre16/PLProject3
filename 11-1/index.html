@@ -2,11 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="problem11.js"></script>
-
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="problem11.js"></script>
     <title>PLProject3: Project 11-1</title>
+    <style>
+        div#customers-contain { width: 350px; margin: 20px 0; }
+        div#customers-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+        div#customers-contain table td, div#customers-contain table th { border: 3px solid black; padding: .6em 10px; text-align: left; }
+
+        div#employees-contain { width: 350px; margin: 20px 0; }
+        div#employees-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+        div#employees-contain table td, div#employees-contain table th { border: 3px solid black; padding: .6em 10px; text-align: left; }
+    </style>
 </head>
-<body></body>
+<body>
+    <h1>Welcome to the Person Tester application!</h1>
+    <div id="customers-contain">
+        <h1>Existing Customers:</h1>
+        <table id="customers">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Customer Number</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id = "employees-contain">
+        <h1>Existing Employees:</h1>
+        <table id="employees">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Social Security Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</body>
 </html>
